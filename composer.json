@@ -1,0 +1,44 @@
+{
+    "name": "mphpmaster/laravel-zatca",
+    "description": "Laravel helper to generate the QRcode for ZATCA E-Invoicing system",
+    "type": "library",
+    "keywords": [
+        "ZATCA",
+        "e-invocing",
+        "tlv",
+        "tag",
+        "legnth",
+        "value",
+        "qr-code"
+    ],
+    "homepage": "https://github.com/mphpmaster/laravel-zatca",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hlaCk",
+            "email": "mPhpMaster@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.4",
+        "ext-mbstring": "*",
+        "chillerlan/php-qrcode": "^4.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MPhpMaster\\ZATCA\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MPhpMaster\\ZATCA\\Test\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
+}
