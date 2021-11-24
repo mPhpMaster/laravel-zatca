@@ -1,6 +1,7 @@
 {
     "name": "mphpmaster/laravel-zatca",
     "description": "Laravel helper to generate the QRcode for ZATCA E-Invoicing system",
+    "version": "1.0.0",
     "type": "library",
     "keywords": [
         "ZATCA",
