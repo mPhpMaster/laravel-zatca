@@ -22,11 +22,11 @@ $ composer require mphpmaster/laravel-zatca
 
 ```php
 $value = \MPhpMaster\ZATCA\TagBag::make()
-    ->addCompany('Company name')
-    ->addVatId('1234567891')
-    ->addInvoiceDate('2021-11-24T03:48:00Z')
-    ->addInvoiceTotalAmount('100')
-    ->addVatAmount('15')
+    ->setCompany('Company name')
+    ->setVatId('1234567891')
+    ->setInvoiceDate('2021-11-24T03:48:00Z')
+    ->setInvoiceTotalAmount('100')
+    ->setVatAmount('15')
     ->toBase64();
 
 // > Output
@@ -37,11 +37,11 @@ $value = \MPhpMaster\ZATCA\TagBag::make()
 
 ```php
 $value = \MPhpMaster\ZATCA\TagBag::make()
-    ->addCompany('Company name')
-    ->addVatId('1234567891')
-    ->addInvoiceDate('2021-11-24T03:48:00Z')
-    ->addInvoiceTotalAmount('100')
-    ->addVatAmount('15')
+    ->setCompany('Company name')
+    ->setVatId('1234567891')
+    ->setInvoiceDate('2021-11-24T03:48:00Z')
+    ->setInvoiceTotalAmount('100')
+    ->setVatAmount('15')
     ->toTLV();
 ```
 
@@ -49,11 +49,11 @@ $value = \MPhpMaster\ZATCA\TagBag::make()
 
 ```php
 $value = \MPhpMaster\ZATCA\TagBag::make()
-    ->addCompany('Company name')
-    ->addVatId('1234567891')
-    ->addInvoiceDate('2021-11-24T03:48:00Z')
-    ->addInvoiceTotalAmount('100')
-    ->addVatAmount('15')
+    ->setCompany('Company name')
+    ->setVatId('1234567891')
+    ->setInvoiceDate('2021-11-24T03:48:00Z')
+    ->setInvoiceTotalAmount('100')
+    ->setVatAmount('15')
     ->toImage();
 
 // <img src="$value" alt="ZATCA QRCode" />

@@ -21,45 +21,35 @@ class TagBag
         return new static(...func_get_args());
     }
 
-    public function addTag(int $tag, string $value): self
+    public function setCompany(string $value): self
     {
-        $this->data[] = Tag::make($tag, $value);
+        return $this->tag(Company::TAG, Company::make($value));
+    }
+
+    public function tag(int $tag, string $value): self
+    {
+        $this->data[ $tag ] = Tag::make($tag, $value);
         return $this;
     }
 
-    public function addCompany(string $value): self
+    public function setVatId(string $value): self
     {
-        $this->data[] = Company::make($value);
-        return $this;
+        return $this->tag(VatId::TAG, VatId::make($value));
     }
 
-    public function addVatId(string $value): self
+    public function setInvoiceDate(string $value): self
     {
-        $this->data[] = VatId::make($value);
-        return $this;
+        return $this->tag(InvoiceDate::TAG, InvoiceDate::make($value));
     }
 
-    public function addInvoiceDate(string $value): self
+    public function setInvoiceTotalAmount(string $value): self
     {
-        $this->data[] = InvoiceDate::make($value);
-        return $this;
+        return $this->tag(InvoiceTotalAmount::TAG, InvoiceTotalAmount::make($value));
     }
 
-    public function addInvoiceTotalAmount(string $value): self
+    public function setVatAmount(string $value): self
     {
-        $this->data[] = InvoiceTotalAmount::make($value);
-        return $this;
-    }
-
-    public function addVatAmount(string $value): self
-    {
-        $this->data[] = VatAmount::make($value);
-        return $this;
-    }
-
-    public function data(): array
-    {
-        return $this->data;
+        return $this->tag(VatAmount::TAG, VatAmount::make($value));
     }
 
     public function toImage(): string
@@ -74,6 +64,11 @@ class TagBag
 
     public function toTLV(): string
     {
-        return implode('', array_map(fn($tag) => (string)$tag, $this->data));
+        return implode('', array_map(fn($tag) => (string) $tag, $this->getData()));
+    }
+
+    public function getData(): array
+    {
+        return $this->data;
     }
 }
