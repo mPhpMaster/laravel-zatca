@@ -17,13 +17,13 @@ class TagBagTest extends TestCase
     {
         $value = TagBag::make()
                        ->setCompany('Company name')
-                       ->setVatId('1234567891')
-                       ->setInvoiceDate('2021-11-24T03:48:00Z')
+                       ->setVatId('311111111111113')
+                       ->setInvoiceDate('2023-11-24T03:48:00Z')
                        ->setInvoiceTotalAmount('100')
                        ->setVatAmount('15')
                        ->toBase64();
 
-        $this->assertEquals('AQxDb21wYW55IG5hbWUCCjEyMzQ1Njc4OTEDFDIwMjEtMTEtMjRUMDM6NDg6MDBaBAMxMDAFAjE1', $value);
+        $this->assertEquals('AQxDb21wYW55IG5hbWUCDzMxMTExMTExMTExMTExMwMUMjAyMy0xMS0yNFQwMzo0ODowMFoEAzEwMAUCMTU=', $value);
     }
 
     /** @test */
@@ -31,14 +31,14 @@ class TagBagTest extends TestCase
     {
         $value = TagBag::make()
                        ->setCompany('المنشآة')
-                       ->setVatId('1234567891')
-                       ->setInvoiceDate('2021-11-24T03:48:00Z')
+                       ->setVatId('311111111111113')
+                       ->setInvoiceDate('2023-11-24T03:48:00Z')
                        ->setInvoiceTotalAmount('100')
                        ->setVatAmount('15')
                        ->toTLV();
 
         $this->assertEquals(
-            'AQ7Yp9mE2YXZhti02KLYqQIKMTIzNDU2Nzg5MQMUMjAyMS0xMS0yNFQwMzo0ODowMFoEAzEwMAUCMTU=',
+            'AQ7Yp9mE2YXZhti02KLYqQIPMzExMTExMTExMTExMTEzAxQyMDIzLTExLTI0VDAzOjQ4OjAwWgQDMTAwBQIxNQ==',
             base64_encode($value)
         );
     }
@@ -47,15 +47,15 @@ class TagBagTest extends TestCase
     public function shouldGenerateAQrCodeFromTagsClasses()
     {
         $generatedString = TagBag::make()
-                                 ->tag(Company::TAG, 'Company name')
-                                 ->tag(VatId::TAG, '1234567891')
-                                 ->tag(InvoiceDate::TAG, '2021-11-24T03:48:00Z')
-                                 ->tag(InvoiceTotalAmount::TAG, '100')
-                                 ->tag(VatAmount::TAG, '15')
+                                 ->tag(Company::TAG, Company::make('Company name'))
+                                 ->tag(VatId::TAG, VatId::make('311111111111113'))
+                                 ->tag(InvoiceDate::TAG, InvoiceDate::make('2023-11-24T03:48:00Z'))
+                                 ->tag(InvoiceTotalAmount::TAG, InvoiceTotalAmount::make('100'))
+                                 ->tag(VatAmount::TAG, VatAmount::make('15'))
                                  ->toBase64();
 
         $this->assertEquals(
-            'AQxDb21wYW55IG5hbWUCCjEyMzQ1Njc4OTEDFDIwMjEtMTEtMjRUMDM6NDg6MDBaBAMxMDAFAjE1',
+            'AQxDb21wYW55IG5hbWUCDzMxMTExMTExMTExMTExMwMUMjAyMy0xMS0yNFQwMzo0ODowMFoEAzEwMAUCMTU=',
             $generatedString
         );
     }
@@ -65,14 +65,14 @@ class TagBagTest extends TestCase
     {
         $value = TagBag::make()
                        ->setCompany('المنشآة')
-                       ->setVatId('1234567891')
-                       ->setInvoiceDate('2021-11-24T03:48:00Z')
+                       ->setVatId('311111111111113')
+                       ->setInvoiceDate('2023-11-24T03:48:00Z')
                        ->setInvoiceTotalAmount('100')
                        ->setVatAmount('15')
                        ->toImage();
 
         $this->assertEquals(
-            'data:image/png;base64,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',
+            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAIAAACx0UUtAAAABnRSTlMA/wD/AP83WBt9AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAFaElEQVR4nO3dwW7zNhCF0ab43/+V001XWqhgOZS+xOdsY0tyfEF4QHL49f39/ReE/f32A8B/kFHqZJQ6GaVORqmTUepklDoZpU5GqZNR6mSUOhmlTkapk1HqZJQ6GaVORqmTUepklLo/O2/++vqaeo57l01Xl/vu/HXpvhf3l1p6qiU7H3Dnv7Fj5/MaR6mTUepklDoZpW6rZroYbCcx+MN/6VJLT3Wu/ri/0f0z73wLj32DS4yj1MkodTJKnYxSN1kzXQzO6Jy78mBFtXTle4NzYzvzW+e+wSXGUepklDoZpU5GqTtYMzWdm8HaKc6WLvXW+rq3GEepk1HqZJQ6GaXuN9RMO8XK0pXPFUlLf7349SWUcZQ6GaVORqmTUeoO1kznFmuda82wUxUNft6lh7x/7+BjvMU4Sp2MUiej1MkodZM102MzHIMr2R7bOfTYfS8G58beYhylTkapk1HqZJS6rZrprXmIx2awBsuRwfsOiswk3TOOUiej1MkodTJK3WvnM+0se3ur+cLFY4XO4I3OTTudO4/KOEqdjFIno9TJKHWT80yD+2wGq4TIFM5g3+5z27l2Xnxud5dxlDoZpU5GqZNR6l6bZ9q51GOtuB/rAfFYRTXosWLUOEqdjFIno9TJKHVfgz+xBxfUnXuMc1cePD32F5zDO8g4Sp2MUiej1MkodQd7jS/9AI/03BvsNb7TKG+w/FoyuL3JfiY+iIxSJ6PUySh1kzXT4LzL4GTJYMeEwRcPFliDCwj1Gof/Q0apk1HqZJS6g2vzlkTmeyIzOks3emsx3j09IPggMkqdjFIno9Rt1UyD57ReDBZJO1deeu/SpZau/Nhc0bnyy9o8fjMZpU5GqZNR6iq9xu8X1J07LjbSMSEy3/NYn44lxlHqZJQ6GaVORqmb7DX+WKe4nWbbg9uqztU95852emx3l7V5fBAZpU5GqZNR6ibX5l28tWXnra4H5z5vpEPEPWvz+FwySp2MUiej1L22nylSFpzb/HRv8DHOeWwe8Z5xlDoZpU5GqZNR6ip98+6dmyx5rGHE4IuXDDYkHLzyEuModTJKnYxSJ6PUvVYznZs7eWu92eD5TPcvvhjsXniup/sO4yh1MkqdjFIno9RN9oC4N7jO7UfUWzvNJpa6CJ5rKrjz4kHGUepklDoZpU5GqZvsNX5vsPfd0pXPdYo7d6jSuS6Cj/XNG2QcpU5GqZNR6mSUuuf65j121upbLfiWvNUg47EtSnpA8EFklDoZpU5GqTs4z/RYWbBjadnbuQWE5+rLc3XtuRWDF8ZR6mSUOhmlTkapO9gDYnBy6GKwF9y5RgafNkd1/94dxlHqZJQ6GaVORqmrnM+0c997kRNgIyvoztU9zrTlc8kodTJKnYxSNznPtHbjH/jj/dxk2FuzQTv0God/ySh1MkqdjFL3Ws2046364yeelrt03/vHeCsqxlHqZJQ6GaVORqk72Ddv0LlDXQdrlyXnrnx/o0hHviXGUepklDoZpU5Gqdvqm3fxWJuDpfeem5XZKUfemme6v9Qga/P4IDJKnYxSJ6PUvdYD4uKxRXFLj3F/5bfayn3a9ibjKHUySp2MUiej1E3OMz3m3HK7nQOK7h/jXO1y/3nfOulqkHGUOhmlTkapk1HqfmTNdPHWWrXISbv377147BjiQcZR6mSUOhmlTkapO1gzRTryPbZl51JD7JQU51Y5Lnlrmd+FcZQ6GaVORqmTUep+ZN+8wd1Ov6Bvd+S/cc9+Jn4zGaVORqmTUep+5PlMfBTjKHUySp2MUiej1MkodTJKnYxSJ6PUySh1MkqdjFIno9TJKHUySp2MUiej1MkodTJKnYxS9w8nBL7GAegArgAAAABJRU5ErkJggg==',
             $value
         );
     }

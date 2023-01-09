@@ -32,8 +32,15 @@ class TagBag
         return $this;
     }
 
+    /**
+     * @throws \Exception
+     */
     public function setVatId(string $value): self
     {
+        if( strlen($value) !== 15 ) {
+            throw new \Exception("VatId length should be equal to 15");
+        }
+
         return $this->tag(VatId::TAG, VatId::make($value));
     }
 
