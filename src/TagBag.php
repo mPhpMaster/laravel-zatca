@@ -26,9 +26,9 @@ class TagBag
         return $this->tag(Company::TAG, Company::make($value));
     }
 
-    public function tag(int $tag, string $value): self
+    public function tag(int $tag, Tag $tag_instance): self
     {
-        $this->data[ $tag ] = Tag::make($tag, $value);
+        $this->data[ $tag ] = $tag_instance;
         return $this;
     }
 
