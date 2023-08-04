@@ -71,6 +71,9 @@ Copyright © 2023 hlaCk (https://github.com/mPhpMaster)
 
 Licensed under the **MIT License** (https://github.com/mPhpMaster/laravel-zatca/blob/master/LICENSE) license.
 
+
 ***
+
+## Stand with Palestine 🇵🇸 <i>#FreePalestine</i>
 
 
